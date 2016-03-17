@@ -12,6 +12,7 @@ export default function configureStore(initialState)
 
 	if (module.hot) {
 		// Enable Webpack hot module replacement for reducers
+		// Info: https://github.com/reactjs/react-redux/releases/tag/v2.0.0
 		module.hot.accept('../reducers', () =>
 		{
 			const nextRootReducer = require('../reducers/index');

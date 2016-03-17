@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import * as ActionCreators from '../actions';
+import Board from '../components/Board';
 
 let mapStateToProps = function(state)
 {
-	return {};
+	return state.game;
 };
 
 let mapDispatchToProps = function(dispatch)
 {
-	return {};
+	return {
+		// "boundActionCreators" is just soo longgg
+		boundActions: bindActionCreators(ActionCreators, dispatch)
+	};
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -18,7 +25,7 @@ export default class App extends Component {
 	{
 		return (
 			<div className="App">
-				Main app component
+				<Board {...this.props} />
 			</div>
 		);
 	};
