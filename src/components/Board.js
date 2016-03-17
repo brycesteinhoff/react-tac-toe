@@ -6,7 +6,7 @@ export default class Board extends Component {
 
 	buildBoard()
 	{
-		let size = this.props.board.size;
+		let size = this.props.boardSize;
 		let spaces = this.props.spaces;
 		let dispatchPlay = this.props.boundActions.play;
 		let rows = [];
