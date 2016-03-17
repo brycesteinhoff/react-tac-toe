@@ -1,0 +1,6 @@
+.DS_Store
+react-tac-toe.sublime-project
+react-tac-toe.sublime-workspace
+/node_modules
+npm-debug.log
+/build/*
