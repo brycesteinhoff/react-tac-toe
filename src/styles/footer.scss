@@ -1,0 +1,10 @@
+@import './mixins';
+
+.Footer {
+	text-align: center;
+	background-color: $color-black-light;
+
+	.btn {
+		@include segment();
+	}
+}

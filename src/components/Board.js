@@ -4,6 +4,13 @@ import Space from './Space';
 
 export default class Board extends Component {
 
+	showModal(e)
+	{
+		e.preventDefault();
+
+		this.props.boundActions.showModal();
+	}
+
 	buildBoard()
 	{
 		let size = this.props.boardSize;
@@ -34,9 +41,14 @@ export default class Board extends Component {
 		let boardContent = this.buildBoard();
 
 		return (
-			<div className="Board">
-				{boardContent}
-			</div>
+			<section className="Board">
+				<div className="container container-narrower">
+					<div className="Board__content">
+						{boardContent}
+					</div>
+					<a href="#" className="btn" onClick={this.showModal.bind(this)}><span>Reset Game</span></a>
+				</div>
+			</section>
 		);
 	};
 

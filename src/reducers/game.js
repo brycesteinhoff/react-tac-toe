@@ -4,7 +4,7 @@ import * as Utils from './_utils';
 const STATUS_STOPPED = 'Stopped';
 const STATUS_RUNNING = 'Running';
 
-let initialState = {
+const initialState = {
 	// Game status
 	status: STATUS_STOPPED,
 
@@ -19,13 +19,12 @@ let initialState = {
 	// Values: false, 0, or 1
 	winner: false,
 
+	// Is it a draw?
+	draw: false,
+
 	// Status of each space if available
 	// Accessed as `spaces[x][y]`
 	spaces: [],
-
-	// Space misplayed last turn
-	// Stored as `[x, y]` or null if none
-	lastMisplayed: null,
 
 	// Winning progress for each row, column, & diagonal
 	// for each player if available
@@ -35,22 +34,22 @@ let initialState = {
 
 	// How many times has each player won?
 	// Stored as `[player0, player1]`
-	winCount: [0,0]
+	winCount: [0,0],
+
+	// Show modal dialog?
+	showModal: false
 };
 
 function start(state, action)
 {
 	// Reset state
-	let newState = initialState;
-
-	// Set status
+	// Leave boardSize and winCount as is
+	let newState = {...state};
 	newState.status = STATUS_RUNNING;
-
-	// Preserve board size
-	newState.boardSize = state.boardSize;
-
-	// Preserve win count
-	newState.winCount = state.winCount;
+	newState.currentPlayer = 0;
+	newState.winner = false;
+	newState.spaces = [];
+	newState.winProgress = {};
 
 	return newState;
 }
@@ -61,19 +60,10 @@ function play(state, action)
 
 	let [row, column] = action.coords;
 
-	// Reset last misplayed
-	if (state.lastMisplayed) {
-		let [misplayedRow, misplayedColumn] = state.lastMisplayed;
-
-		newState.spaces[misplayedRow][misplayedColumn].misplayed = false;
-		newState.lastMisplayed = null;
-	}
-
 	// Space has already been played
 	if (!Utils.isSpaceOpen(action.coords, state)) {
-		newState.spaces[row][column].misplayed = true;
-		newState.lastMisplayed = [row, column];
-
+		// Checking this in Space component
+		// Shouldn't ever get here
 		return newState;
 	}
 
@@ -82,8 +72,7 @@ function play(state, action)
 	if (!state.spaces[row]) { newState.spaces[row] = []; }
 	// Add space
 	newState.spaces[row][column] = {
-		player: state.currentPlayer,
-		misplayed: false
+		player: state.currentPlayer
 	};
 
 	// Update win progress
@@ -94,9 +83,10 @@ function play(state, action)
 		newState.status = STATUS_STOPPED;
 		newState.winner = state.currentPlayer;
 		newState.winCount[state.currentPlayer]++;
-
-		return newState;
 	}
+
+	// Check for draw game
+	// Deep length of array equals boardSize squared
 
 	// Change current player to other player
 	newState.currentPlayer = 1 - state.currentPlayer;
@@ -113,17 +103,38 @@ function updateSize(state, action)
 	return newState;
 }
 
+function showModal(state, action)
+{
+	let newState = {...state};
+
+	newState.showModal = true;
+
+	return newState;
+}
+
+function dismissModal(state, action)
+{
+	let newState = {...state};
+
+	newState.showModal = false;
+
+	return newState;
+}
+
 export default function gameReducer(state = initialState, action)
 {
 	switch(action.type)
 	{
 		case ActionTypes.START:
-			// return start(state, action);
-			return state;
+			return start(state, action);
 		case ActionTypes.PLAY:
 			return play(state, action);
 		case ActionTypes.UPDATE_SIZE:
 			return updateSize(state, action);
+		case ActionTypes.SHOW_MODAL:
+			return showModal(state, action);
+		case ActionTypes.DISMISS_MODAL:
+			return dismissModal(state, action);
 		default:
 			return state;
 	}

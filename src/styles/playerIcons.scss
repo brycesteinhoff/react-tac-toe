@@ -1,0 +1,150 @@
+@import './variables';
+
+.PlayerIcon {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	span {
+		position: relative;
+		width: 85%;
+		height: 85%;
+		display: block;
+	}
+}
+
+.PlayerIcon--player0 {
+	// Prep for animation
+	&.animate-enter span {
+		&:before,
+		&:after {
+			opacity: 0;
+			transform: rotate(0deg);
+		}
+
+		&:before {
+			top: 0%;
+		}
+
+		&:after {
+			bottom: 100%;
+		}
+	}
+
+	// Animate in
+	&.animate-enter-active span {
+		&:before,
+		&:after {
+			opacity: 1;
+		}
+
+		&:before {
+			top: 37.5%;
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			bottom: 37.5%;
+			transform: rotate(-45deg);
+		}
+	}
+
+	// Animate out
+	&.animate-leave-active span {
+		transform: translateY(150%);
+	}
+
+	// Common & final state
+	span {
+		transition: transform 0.5s ease;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 25%;
+			background-color: $color-cyan;
+			display: block;
+			opacity: 1;
+
+			// Top/bottom, opacity, transform
+			transition-duration: 0.5s, 0.5s, 0.5s;
+			transition-delay: 0s, 0s, 0s;
+			transition-timing-function: ease;
+		}
+
+		&:before {
+			top: 37.5%;
+			transform: rotate(45deg);
+
+			transition-property: top, opacity, transform;
+		}
+
+		&:after {
+			bottom: 37.5%;
+			transform: rotate(-45deg);
+
+			transition-property: bottom, opacity, transform;
+		}
+	}
+}
+
+.PlayerIcon--player1 {
+	// Prep for animation
+	&.animate-enter span {
+		opacity: 0;
+		transform: scale(0.5, 0.5);
+	}
+
+	// Animate in
+	&.animate-enter-active span {
+		opacity: 1;
+		transform: scale(1, 1);
+	}
+
+	// Animate out
+	&.animate-leave-active span {
+		transform: scale(1, 1) translateY(150%);
+	}
+
+	// Common & final state
+	span {
+		// Outer
+		width: 78%;
+		height: 78%;
+		border-radius: 50%;
+		overflow: hidden;
+
+		opacity: 1;
+		transform: scale(1, 1);
+
+		// Opacity, transform
+		// Autoprefixer giving warning if I use transition-property here? Weird
+		transition: opacity, transform;
+		transition-duration: 0.5s, 0.5s;
+		transition-delay: 0s, 0s;
+		transition-timing-function: ease;
+
+		// Inner
+		&:after {
+			content: "";
+			position: absolute;
+			width: 50%;
+			height: 50%;
+			left: 25%;
+			top: 25%;
+			border-radius: 50%;
+			display: block;
+
+			box-shadow: 0px 0px 0px 40px $color-pink; // 40px is max needed
+		}
+	}
+}

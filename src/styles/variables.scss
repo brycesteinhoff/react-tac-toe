@@ -1,0 +1,27 @@
+// Breakpoints
+$break-md: 768px;
+
+// Gaps
+$gap-small: 5px;
+$gap-small-md: 10px;
+
+$gap-medium: 15px;
+$gap-medium-md: 25px;
+
+$gap-large: 30px;
+$gap-large-md: 45px;
+
+// Colors
+$color-purple: #53346d;
+$color-cyan: #40fff2;
+$color-pink: #ffa7ff;
+$color-blue: #3d5499;
+$color-white-light: transparentize(#fff, 0.25);
+$color-white-lighter: transparentize(#fff, 0.75);
+$color-black-light: transparentize(#000, 0.85);
+
+// Typography
+$font-size-base: 18px;
+$font-size-small: 14px;
+
+$line-height-base: 1.375;

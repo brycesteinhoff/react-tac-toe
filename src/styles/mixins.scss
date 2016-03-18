@@ -1,0 +1,9 @@
+@import './variables';
+
+@mixin segment() {
+	margin-bottom: $gap-medium;
+
+	@media(min-width: $break-md) {
+		margin-bottom: $gap-medium-md;
+	}
+}

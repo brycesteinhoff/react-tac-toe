@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Slider from 'rc-slider';
-import 'style!css!rc-slider/assets/index.css';
-
 import * as ActionCreators from '../actions';
+import Modal from '../components/Modal';
+import Header from '../components/Header';
 import Board from '../components/Board';
+import Footer from '../components/Footer';
+
+import '../styles';
 
 let mapStateToProps = function(state)
 {
@@ -23,17 +25,14 @@ let mapDispatchToProps = function(dispatch)
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
 
-	testingSlider(boardSize)
-	{
-		this.props.boundActions.updateBoardSize(boardSize);
-	}
-
 	render()
 	{
 		return (
 			<div className="App">
-				<Slider min={3} max={8} step={1} defaultValue={this.props.boardSize} disabled={false} onAfterChange={this.testingSlider.bind(this)} />
+				<Modal {...this.props} />
+				<Header />
 				<Board {...this.props} />
+				<Footer {...this.props} />
 			</div>
 		);
 	};

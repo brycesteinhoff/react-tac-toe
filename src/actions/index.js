@@ -28,3 +28,19 @@ export function updateBoardSize(size)
 		size: size
 	};
 };
+
+// Show modal
+export function showModal()
+{
+	return {
+		type: ActionTypes.SHOW_MODAL
+	}
+}
+
+// Dismiss modal
+export function dismissModal()
+{
+	return {
+		type: ActionTypes.DISMISS_MODAL
+	}
+}

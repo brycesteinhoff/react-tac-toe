@@ -1,7 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
-module.exports = {
+// Common
+var config = {
 
 	devtool: 'cheap-module-eval-source-map',
 
@@ -18,6 +21,16 @@ module.exports = {
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin()
 	],
+
+	postcss: [
+		autoprefixer({
+			browsers: ['last 2 versions']
+		})
+	],
+
+	resolve: {
+		extensions: ['', '.js', '.scss', '.css']
+	},
 	
 	module: {
 		loaders: [
@@ -31,3 +44,29 @@ module.exports = {
 	}
 
 };
+
+// Production
+if (process.env.NODE_ENV === 'production')
+{
+	config.plugins.push(new ExtractTextPlugin('style.css'));
+
+	config.module.loaders.push(
+		{
+			test: /\.s?css$/,
+			loader: ExtractTextPlugin.extract('style', 'css?minimize!postcss!sass')
+		}
+	);
+}
+
+// Development
+if (process.env.NODE_ENV === 'development')
+{
+	config.module.loaders.push(
+		{
+			test: /\.s?css$/,
+			loader: 'style!css!postcss!sass'
+		}
+	);
+}
+
+module.exports = config;

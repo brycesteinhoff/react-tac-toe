@@ -1,0 +1,37 @@
+@import './variables';
+
+.rc-slider {
+	background-color: #fff;
+}
+
+.rc-slider-handle {
+	border-width: 3px;
+	border-color: $color-purple;
+
+	&:hover {
+		border-color: $color-purple;
+		background-color: $color-purple;
+	}
+}
+
+.rc-slider-track {
+	background-color: $color-pink;
+}
+
+.rc-slider-dot {
+	border-color: $color-black-light;
+}
+
+.rc-slider-dot-active {
+	border-color: $color-purple;
+	background-color: $color-purple;
+}
+
+.rc-slider-mark {
+	font-size: $font-size-small;
+}
+
+.rc-slider-mark-text,
+.rc-slider-mark-text-active {
+	color: #fff;
+}
