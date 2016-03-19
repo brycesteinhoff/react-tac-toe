@@ -1,12 +1,10 @@
+import * as Constants from './_constants';
 import * as ActionTypes from '../actions/types';
 import * as Utils from './_utils';
 
-const STATUS_STOPPED = 'Stopped';
-const STATUS_RUNNING = 'Running';
-
 const initialState = {
 	// Game status
-	status: STATUS_STOPPED,
+	status: Constants.STATUS_RUNNING,
 
 	// Board size
 	boardSize: 3,
@@ -33,6 +31,7 @@ const initialState = {
 	winProgress: {},
 
 	// How many times has each player won?
+	// Sort of useless to track really
 	// Stored as `[player0, player1]`
 	winCount: [0,0],
 
@@ -43,11 +42,11 @@ const initialState = {
 function start(state, action)
 {
 	// Reset state
-	// Leave boardSize and winCount as is
 	let newState = {...state};
-	newState.status = STATUS_RUNNING;
+	newState.status = Constants.STATUS_RUNNING;
 	newState.currentPlayer = 0;
 	newState.winner = false;
+	newState.draw = false;
 	newState.spaces = [];
 	newState.winProgress = {};
 
@@ -80,13 +79,17 @@ function play(state, action)
 
 	// Check for winner
 	if (Utils.checkForWinner(newState, action.coords)) {
-		newState.status = STATUS_STOPPED;
+		newState.status = Constants.STATUS_STOPPED;
 		newState.winner = state.currentPlayer;
 		newState.winCount[state.currentPlayer]++;
+		newState.showModal = true;
 	}
-
 	// Check for draw game
-	// Deep length of array equals boardSize squared
+	else if (Utils.checkForDraw(newState.spaces, state.boardSize)) {
+		newState.status = Constants.STATUS_STOPPED;
+		newState.draw = true;
+		newState.showModal = true;
+	}
 
 	// Change current player to other player
 	newState.currentPlayer = 1 - state.currentPlayer;

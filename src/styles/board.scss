@@ -41,7 +41,7 @@
 		padding-bottom: 100%;
 	}
 
-	&:hover:not(.Space--hasBeenPlayed) {
+	&:hover:not(.Space--hasBeenPlayed):not(.Space--isLocked) {
 		background-color: rgba(255, 255, 255, 0.1);
 	}
 }
@@ -50,4 +50,8 @@
 	cursor: default;
 	box-shadow: inset 0 0 50px 0 $color-black-light;
 	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.Space--isLocked {
+	cursor: default;
 }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
+import * as Constants from '../reducers/_constants';
 import PlayerIcon from './PlayerIcon';
 
 export default class Space extends Component {
 
 	play()
 	{
-		if (!this.props.space.hasOwnProperty('player')) {
+		if (this.getPlayer() === false && this.props.gameStatus !== Constants.STATUS_STOPPED) {
 			this.props.dispatchPlay(this.props.coords);
 		}
 	}
@@ -29,6 +30,10 @@ export default class Space extends Component {
 
 		if (this.getPlayer() !== false) {
 			classes.push('Space--hasBeenPlayed');
+		}
+
+		if (this.props.gameStatus === Constants.STATUS_STOPPED) {
+			classes.push('Space--isLocked');
 		}
 
 		return classes;

@@ -69,6 +69,13 @@ body {
 	font-size: $font-size-small;
 }
 
+h1 {
+	margin: 0;
+	font-size: $font-size-headings;
+
+	@include segment();
+}
+
 p {
 	margin: 0;
 

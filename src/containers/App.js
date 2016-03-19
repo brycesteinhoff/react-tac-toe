@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as ActionCreators from '../actions';
 import Modal from '../components/Modal';
 import Header from '../components/Header';
+import Flash from '../components/Flash';
 import Board from '../components/Board';
 import Footer from '../components/Footer';
 
@@ -32,7 +33,7 @@ export default class App extends Component {
 				<Modal {...this.props} />
 				<Header />
 				<Board {...this.props} />
-				<Footer {...this.props} />
+				<Footer />
 			</div>
 		);
 	};

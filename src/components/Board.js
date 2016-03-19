@@ -15,6 +15,7 @@ export default class Board extends Component {
 	{
 		let size = this.props.boardSize;
 		let spaces = this.props.spaces;
+		let gameStatus = this.props.status;
 		let dispatchPlay = this.props.boundActions.play;
 		let rows = [];
 
@@ -27,7 +28,7 @@ export default class Board extends Component {
 				// Pass space state if available, else empty object
 				let spaceState = (spaces[x] && spaces[x][y]) ? spaces[x][y] : {};
 
-				columnSpaces.push(<Space /*react*/key={'col' + y} coords={[x,y]} space={spaceState} dispatchPlay={dispatchPlay} />);
+				columnSpaces.push(<Space /*react*/key={'col' + y} coords={[x,y]} space={spaceState} gameStatus={gameStatus} dispatchPlay={dispatchPlay} />);
 			}
 
 			rows[x] = <div className="Board__row" /*react*/key={'row' + x}>{columnSpaces}</div>;

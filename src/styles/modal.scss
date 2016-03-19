@@ -88,17 +88,17 @@
 	padding-bottom: 11px;
 }
 
-.Modal__header__logo {
+.Modal__logo {
 	max-width: 250px;
 	margin: 0 auto;
 	display: block;
 }
 
 .Modal__content {
-	padding: 35px 50px 50px 50px;
+	padding: 25px 50px 50px 50px;
 	text-align: center;
 
 	@media (min-width: $break-md) {
-		padding: 35px 100px 50px 100px;
+		padding: 25px 100px 50px 100px;
 	}
 }

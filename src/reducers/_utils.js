@@ -62,4 +62,23 @@ function checkForWinner(newState, coords)
 	return false;
 }
 
-export { isSpaceOpen, updateWinProgress, checkForWinner };
+function checkForDraw(spaces, boardSize)
+{
+	let count = 0;
+
+	for (let x = 0; x < boardSize; x++) {
+		if (spaces[x]) {
+			for (let y = 0; y < boardSize; y++) {
+				count += (spaces[x][y]) ? 1 : 0;
+			}
+		}
+	}
+
+	if (count === Math.pow(boardSize, 2)) {
+		return true;
+	}
+
+	return false;
+}
+
+export { isSpaceOpen, updateWinProgress, checkForWinner, checkForDraw };

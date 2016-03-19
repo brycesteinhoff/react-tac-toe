@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Slider from 'rc-slider';
 
+import Flash from './Flash';
+
 const sliderMarks = {
 	3: '3x3',
 	4: '4x4',
@@ -43,24 +45,30 @@ export default class Modal extends Component {
 			return;
 		}
 
+		let gameStatus = this.props.status;
+		let winner = this.props.winner;
+		let draw = this.props.draw;
+		let defaultValue = (this.sliderValue) ? this.sliderValue : this.props.boardSize;
+
 		return (
 			<div className="ModalWrapper">
 				<div className="Modal" /*react*/key="modal">
 					<div className="Modal__header">
-						<img src="assets/react-tac-toe.svg" className="Modal__header__logo" />
+						<img src="assets/react-tac-toe.svg" className="Modal__logo" />
 					</div>
 
 					<div className="Modal__content">
+						<Flash gameStatus={gameStatus} winner={winner} draw={draw} />
 						<p>Choose a game board size:</p>
 						<Slider className="Modal__slider"
 							min={3}
 							max={6}
 							marks={sliderMarks}
 							step={1}
-							defaultValue={this.props.boardSize}
+							defaultValue={defaultValue}
 							disabled={false}
 							tipFormatter={null}
-							onChange={this.handleSlider.bind(this)} />
+							onAfterChange={this.handleSlider.bind(this)} />
 					</div>
 
 					<div className="Modal__footer">
