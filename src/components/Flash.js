@@ -14,14 +14,14 @@ export default class Flash extends Component {
 		}
 
 		if (this.props.winner !== false) {
-			innerContent = <h1>Player <span className="Flash__playerIcon"><PlayerIcon player={this.props.winner} /></span> wins!</h1>;
+			innerContent = <h1>Player <span className="Flash__playerIcon"><PlayerIcon ref="PlayerIcon" player={this.props.winner} /></span> wins!</h1>;
 		}
 		else if (this.props.draw) {
 			innerContent = <h1>Draw game!</h1>;
 		}
 		
 		return (
-			<div className="Flash">
+			<div ref="Flash" className="Flash">
 				{innerContent}
 			</div>
 		);

@@ -47,7 +47,7 @@ export default class Board extends Component {
 					<div className="Board__content">
 						{boardContent}
 					</div>
-					<a href="#" className="btn" onClick={this.showModal.bind(this)}><span>Reset Game</span></a>
+					<a ref="btnResetGame" href="#" className="btn" onClick={this.showModal.bind(this)}><span>Reset Game</span></a>
 				</div>
 			</section>
 		);

@@ -44,7 +44,7 @@ export default class Space extends Component {
 		let player = this.getPlayer();
 
 		if (player !== false) {
-			return <PlayerIcon /*react*/key="playerIcon" player={player} />;
+			return <PlayerIcon ref="PlayerIcon" /*react*/key="playerIcon" player={player} />;
 		}
 
 		return;
@@ -54,6 +54,9 @@ export default class Space extends Component {
 	{
 		return (
 			<div className={this.cssClasses().join(' ')} onClick={this.play.bind(this)}>
+				{/*TO-DO: Move the CSSTransitionGroup to the PlayerIcon component
+				Probably have to always display icon component here so
+				CSSTransitionGroup is loaded before visible icon is needed*/}
 				<ReactCSSTransitionGroup transitionName="animate" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
 					{this.playerIcon()}
 				</ReactCSSTransitionGroup>

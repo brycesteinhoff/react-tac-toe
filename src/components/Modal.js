@@ -45,7 +45,7 @@ export default class Modal extends Component {
 			return;
 		}
 
-		let gameStatus = this.props.status;
+		let gameStatus = this.props.gameStatus;
 		let winner = this.props.winner;
 		let draw = this.props.draw;
 		let defaultValue = (this.sliderValue) ? this.sliderValue : this.props.boardSize;
@@ -60,7 +60,7 @@ export default class Modal extends Component {
 					<div className="Modal__content">
 						<Flash gameStatus={gameStatus} winner={winner} draw={draw} />
 						<p>Choose a game board size:</p>
-						<Slider className="Modal__slider"
+						<Slider ref="Slider" className="Modal__slider"
 							min={3}
 							max={6}
 							marks={sliderMarks}
@@ -72,8 +72,8 @@ export default class Modal extends Component {
 					</div>
 
 					<div className="Modal__footer">
-						<a href="#" className="btn" onClick={this.dismissModal.bind(this)}><span>Close</span></a>
-						<a href="#" className="btn btn-right" onClick={this.startGame.bind(this)}><span>Start New Game</span></a>
+						<a ref="btnClose" href="#" className="btn" onClick={this.dismissModal.bind(this)}><span>Close</span></a>
+						<a ref="btnNewGame" href="#" className="btn btn-right" onClick={this.startGame.bind(this)}><span>Start New Game</span></a>
 					</div>
 				</div>
 

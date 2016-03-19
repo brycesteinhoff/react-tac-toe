@@ -2,7 +2,7 @@ import * as Constants from './_constants';
 import * as ActionTypes from '../actions/types';
 import * as Utils from './_utils';
 
-const initialState = {
+let initialState = {
 	// Game status
 	status: Constants.STATUS_RUNNING,
 
