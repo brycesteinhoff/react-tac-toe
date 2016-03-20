@@ -1,4 +1,4 @@
-# React-Tac-toe
+# React-Tac-Toe
 
 A Tic-Tac-Toe implementation in React/Redux.
 
