@@ -67,10 +67,10 @@ function checkForDraw(spaces, boardSize)
 	let count = 0;
 
 	for (let x = 0; x < boardSize; x++) {
-		if (spaces[x]) {
-			for (let y = 0; y < boardSize; y++) {
-				count += (spaces[x][y]) ? 1 : 0;
-			}
+		if (spaces[x] === undefined) { continue; }
+
+		for (let y = 0; y < boardSize; y++) {
+			count += (spaces[x][y]) ? 1 : 0;
 		}
 	}
 
