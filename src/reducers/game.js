@@ -55,7 +55,10 @@ function start(state, action)
 
 function play(state, action)
 {
+	// Deep copy state
 	let newState = {...state};
+	newState.spaces = [...state.spaces]
+	newState.winProgress = {...state.winProgress};
 
 	let [row, column] = action.coords;
 
@@ -68,7 +71,7 @@ function play(state, action)
 
 	// Play space
 	// Add row to spaces array if necessary
-	if (!state.spaces[row]) { newState.spaces[row] = []; }
+	if (!newState.spaces[row]) { newState.spaces[row] = []; }
 	// Add space
 	newState.spaces[row][column] = {
 		player: state.currentPlayer
