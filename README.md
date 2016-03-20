@@ -6,9 +6,8 @@ A Tic-Tac-Toe implementation in React/Redux. Sports a nice-looking responsive la
 
 ```sh
 npm install
+npm run build
 ```
-
-Build should run post-install. Rebuild with `npm run build`.
 
 Open index.html in your browser, or run Webpack Dev Server:
 
