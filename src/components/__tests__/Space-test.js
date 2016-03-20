@@ -64,7 +64,7 @@ describe('components/Space', () =>
 		expect(output.props.className).toContain('Space--isLocked');
 	});
 
-	it('should not have --isLocked className if game is not running', () =>
+	it('should not have --isLocked className if game is running', () =>
 	{
 		let output = renderShallow({ gameStatus: Constants.STATUS_RUNNING });
 
