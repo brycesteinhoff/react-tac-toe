@@ -1,6 +1,6 @@
 # React-Tac-Toe
 
-A Tic-Tac-Toe implementation in React/Redux.
+A Tic-Tac-Toe implementation in React/Redux. Sports a nice-looking responsive layout with CSS animations and supports multiple board sizes.
 
 ## Installation
 
